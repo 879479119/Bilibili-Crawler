@@ -1,0 +1,103 @@
+<dataSource name="MySQL - python_crawl@localhost">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="2.6">
+    <schema id="1" name="python_crawl">
+      <visible>1</visible>
+    </schema>
+    <schema id="2" name="campussay" />
+    <schema id="3" name="cdcol" />
+    <schema id="4" name="information_schema" />
+    <schema id="5" name="mydata" />
+    <schema id="6" name="mysql" />
+    <schema id="7" name="performance_schema" />
+    <schema id="8" name="phpmyadmin" />
+    <schema id="9" name="test" />
+    <schema id="10" name="webauth" />
+    <table id="11" parent="1" name="test" />
+    <table id="12" parent="1" name="bili_v_info" />
+    <table id="13" parent="1" name="t_video_info" />
+    <column id="14" parent="11" name="name">
+      <mandatory>1</mandatory>
+      <data-type>char(20)|0</data-type>
+    </column>
+    <column id="15" parent="11" name="id">
+      <mandatory>1</mandatory>
+      <data-type>int(11)|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <key id="16" parent="11" name="PRIMARY">
+      <columns>id</columns>
+      <primary>1</primary>
+    </key>
+    <column id="17" parent="12" name="aid">
+      <mandatory>1</mandatory>
+      <data-type>int(20)|0</data-type>
+    </column>
+    <column id="18" parent="12" name="vtype">
+      <data-type>int(10)|0</data-type>
+    </column>
+    <column id="19" parent="12" name="credits">
+      <data-type>int(10)|0</data-type>
+    </column>
+    <column id="20" parent="12" name="favourites">
+      <data-type>int(10)|0</data-type>
+    </column>
+    <column id="21" parent="12" name="coins">
+      <data-type>int(10)|0</data-type>
+    </column>
+    <column id="22" parent="12" name="danmu">
+      <data-type>int(10)|0</data-type>
+    </column>
+    <column id="23" parent="12" name="typeid">
+      <mandatory>1</mandatory>
+      <data-type>int(10)|0</data-type>
+    </column>
+    <column id="24" parent="12" name="click">
+      <data-type>int(10)|0</data-type>
+    </column>
+    <key id="25" parent="12" name="PRIMARY">
+      <columns>aid</columns>
+      <primary>1</primary>
+    </key>
+    <column id="26" parent="13" name="aid">
+      <mandatory>1</mandatory>
+      <data-type>int(10)|0</data-type>
+    </column>
+    <column id="27" parent="13" name="now_rank">
+      <data-type>int(10) unsigned zerofill|0</data-type>
+    </column>
+    <column id="28" parent="13" name="favorite">
+      <data-type>int(10) unsigned zerofill|0</data-type>
+    </column>
+    <column id="29" parent="13" name="share">
+      <data-type>int(10) unsigned zerofill|0</data-type>
+    </column>
+    <column id="30" parent="13" name="danmaku">
+      <data-type>int(10) unsigned zerofill|0</data-type>
+    </column>
+    <column id="31" parent="13" name="reply">
+      <data-type>int(10) unsigned zerofill|0</data-type>
+    </column>
+    <column id="32" parent="13" name="coin">
+      <data-type>int(10) unsigned zerofill|0</data-type>
+    </column>
+    <column id="33" parent="13" name="his_rank">
+      <data-type>int(10) unsigned zerofill|0</data-type>
+    </column>
+    <column id="34" parent="13" name="view">
+      <data-type>int(10) unsigned zerofill|0</data-type>
+    </column>
+    <column id="35" parent="13" name="title">
+      <data-type>char(64)|0</data-type>
+    </column>
+    <column id="36" parent="13" name="desc">
+      <data-type>text|0</data-type>
+    </column>
+    <column id="37" parent="13" name="pic">
+      <data-type>char(128)|0</data-type>
+    </column>
+    <key id="38" parent="13" name="PRIMARY">
+      <columns>aid</columns>
+      <primary>1</primary>
+    </key>
+  </database-model>
+</dataSource>
