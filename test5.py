@@ -4,14 +4,16 @@ from test6 import MySQLConnect
 import threading
 from time import ctime, sleep
 conn_ = MySQLConnect()
-now_aid = 247500
+# 设置开始进行爬取的id
+now_aid = 1666500
+now_aid -= 500
 
 
 def func(i):
     global now_aid
-    per_crawl = 30000
-    store_count = 100
-    count = 0
+    # per_crawl = 30000
+    # store_count = 100
+    # count = 0
     global conn_
     # 创建线程锁，避免IO操作报错
     mutex = threading.Lock()
@@ -32,16 +34,22 @@ def func(i):
     #         mutex.release()
     while True:
         if mutex.acquire(1):
-            now_aid += 500
+            try:
+                now_aid += 500
 
-            print '*'*50 + str(now_aid)
+                print '*'*50 + str(now_aid)
 
-            worker[i].run(now_aid, now_aid + 499)
-            p = worker[i].output('video')
-            print '-'*20 + str(ctime()) + '-'*20
+                worker[i].run(now_aid, now_aid + 499)
+                p = worker[i].output('video')
+                print '-'*20 + str(ctime()) + '-'*20
 
-            conn_.insert_video(p)
-            mutex.release()
+                conn_.insert_video(p)
+                mutex.release()
+            except Exception, e:
+                print "ERROR -------->  " + e.message
+        else:
+            print 'X_X      Thread Died'
+            break
 
 worker = []
 result = []

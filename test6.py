@@ -40,6 +40,13 @@ class MySQLConnect:
             print '-'*80 + "SOMETHING WRONG"
             cls.insert_video(v)
 
+    @classmethod
+    def last_modified(cls):
+        try:
+            cls.__cur.execute('SELECT MAX(aid) FROM t_video_info')
+        except MySQLdb.OperationalError, e:
+            print '?? WRONG ??' + e.message
+
     def insert_author(self, values):
         self.__cur.excutemany('INSERT INTO t_author_info VALUES (%s, %s, %s, %s, %s)', values)
         self.__cur.commit()

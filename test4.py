@@ -8,6 +8,7 @@ import re
 
 
 class Crawler:
+    __err_count = 0
 
     def __init__(self):
         # 存储数据的数组,每次取出数据后要清空避免内存堆积
@@ -28,6 +29,9 @@ class Crawler:
         # () => list
 
         if soup.find(name='h1', class_='video-title') is None:
+            return {}
+
+        if soup.find(name='div', class_='video-desc') is None:
             return {}
 
         title = soup.find(name='h1', class_='video-title').get_text()
@@ -81,21 +85,21 @@ class Crawler:
             url = "http://api.bilibili.com/archive_stat/stat?aid=%d&type=jsonp" % aid
             data = None
             try:
-                rsp = urlopen(url)
+                rsp = urlopen(url, timeout=10)
                 json_str = json.loads(rsp.read())
                 if json_str is not None:
                     data = json_str['data']
 
             except HTTPError, e:
-                print e
+                print e.message + '      ----PLACE 2'
             except URLError, e:
-                print e
+                print '--->      ' + url + '      ----PLACE 3'
 
             # 从手机端的页面中抓取视频的其他信息（视频title，视频描述，视频封面，UP主ID，UP主昵称，头像链接
             #                                 title  ,  desc  ,   pic  , uid  , uname  , uface
             mobile_url = "http://www.bilibili.com/mobile/video/av%d.html" % aid
             try:
-                m_rsp = urlopen(mobile_url)
+                m_rsp = urlopen(mobile_url, timeout=10)
                 soup = BeautifulSoup(
                     m_rsp.read(),
                     'html.parser',
@@ -126,6 +130,8 @@ class Crawler:
                 pass
             except URLError, e:
                 pass
+            except Exception, e:
+                print '--->      ' + url + '      ----PLACE 1'
 
 if __name__ == '__main__':
     crawler = Crawler()
